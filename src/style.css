@@ -1,0 +1,28 @@
+body {
+    background-color: #29ADFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 2.5% 25% 0 25%;
+    font-size:xx-large
+}
+
+.screenshot {
+    min-width: 30%;
+}
+
+#screenshots {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#logo {
+    min-width: 5%;
+}
