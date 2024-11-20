@@ -1,3 +1,20 @@
+@font-face {
+    font-family: 'pixelifySans-Bold';
+    src: url(fonts/PixelifySans-Bold.ttf);
+}
+@font-face {
+    font-family: 'pixelifySans-Medium';
+    src: url(fonts/PixelifySans-Medium.ttf);
+}
+@font-face {
+    font-family: 'pixelifySans-Regular';
+    src: url(fonts/PixelifySans-Regular.ttf);
+}
+@font-face {
+    font-family: 'pixelifySans-SemiBold';
+    src: url(fonts/PixelifySans-SemiBold.ttf);
+}
+
 body {
     background-color: #29ADFF;
     display: flex;
@@ -9,8 +26,10 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 2.5% 25% 0 25%;
-    font-size:xx-large
+    margin: 2.5% 30% 0 30%;
+    font-family: 'pixelifySans-Regular', sans-serif;
+    font-size:large;
+    color: #FFF1E8;
 }
 
 .screenshot {
@@ -25,4 +44,15 @@ main {
 
 #logo {
     min-width: 5%;
+}
+
+#paddle{
+    max-width: 50%;
+    margin-left: 25%;
+    
+}
+
+#loopGif{
+    max-width: 50%;
+    margin-left: 25%;
 }
