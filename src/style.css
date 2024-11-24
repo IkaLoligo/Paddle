@@ -28,18 +28,29 @@ main {
     justify-content: center;
     margin: 2.5% 30% 0 30%;
     font-family: 'pixelifySans-Regular', sans-serif;
-    font-size:large;
+    font-size:x-large;
     color: #FFF1E8;
+    padding-bottom: 10%;
+    & h2 {
+        align-self: center;
+    }
 }
 
-.screenshot {
-    min-width: 30%;
+.oneVisual{
+    max-width: 50%;
+    margin: 0 25% 0 25% ;
 }
 
-#screenshots {
+
+.threeVisual {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+    & img {
+        align-self: center;
+        width:256px;
+        height: 256px;
+    }
 }
 
 #logo {
@@ -52,7 +63,3 @@ main {
     
 }
 
-#loopGif{
-    max-width: 50%;
-    margin-left: 25%;
-}
