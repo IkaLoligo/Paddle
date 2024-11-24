@@ -37,8 +37,8 @@ main {
 }
 
 .oneVisual{
-    max-width: 50%;
-    margin: 0 25% 0 25% ;
+
+    margin: 0 15% 0 15% ;
 }
 
 
@@ -48,8 +48,8 @@ main {
     justify-content: space-around;
     & img {
         align-self: center;
-        width:256px;
-        height: 256px;
+        width:384px;
+        height: 384px;
     }
 }
 
@@ -63,13 +63,30 @@ main {
     
 }
 
+#nootjes {
+    margin: 0 35% 0 35% ;
+}
+
 @media screen and (max-width: 700px) {
     main {
         margin: 2.5% 5% 0 5%;
+        font-size:medium;
         }
-    .threeVisual > img {
-        width: 128px;
-        height: 128px;
+
+    h2 {
+        font-size: large;
     }
+
+    
+    
+    .threeVisual > img {
+        width: 150px;
+        height: 150px;
+    }
+
+    #nootjes {
+        margin: 0 25% 0 25% ;
+    }
+    
 }
     
