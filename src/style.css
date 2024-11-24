@@ -77,11 +77,15 @@ main {
         font-size: large;
     }
 
-    
+    .threeVisual{
+        flex-direction: column;
+        margin: 0 15% 0 15% ;
+    }
     
     .threeVisual > img {
-        width: 150px;
-        height: 150px;
+        width: 100%;
+        height: 100%;
+        margin-top: 5%;
     }
 
     #nootjes {
