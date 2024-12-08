@@ -89,6 +89,11 @@ main {
     height: auto;
 }
 
+#muziekNoten{
+    width: 100%;
+    height: auto;
+}
+
 @media screen and (max-width: 700px) {
     main {
         margin: 2.5% 5% 0 5%;
@@ -97,6 +102,12 @@ main {
 
     h2 {
         font-size: large;
+    }
+
+    iframe {
+        width: 128px;
+        height: 128px;
+        align-self: center;
     }
 
     .threeVisual{
@@ -113,6 +124,22 @@ main {
     #nootjes {
         margin: 0 25% 0 25% ;
     }
+
+    #windsok {
+        width: 300%;
+        height: auto;
+    }
+    
+    #muziekNoten{
+        width: 300%;
+        height: auto;
+    }
+    #notebar {
+        width: 50%;
+        height: auto;
+    }
+    
+    
     
 }
     
