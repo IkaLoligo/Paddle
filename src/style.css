@@ -53,6 +53,18 @@ main {
     }
 }
 
+.visualPlusText {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    & img {
+        align-self: center;
+        width:auto;
+        height: 100px;
+        margin: 2%;
+    }
+}
+
 #logo {
     min-width: 5%;
 }
@@ -63,8 +75,18 @@ main {
     
 }
 
+#notebar {
+    width: 25%;
+    height: auto;
+}
+
 #nootjes {
     margin: 0 35% 0 35% ;
+}
+
+#windsok {
+    width: 100%;
+    height: auto;
 }
 
 @media screen and (max-width: 700px) {
