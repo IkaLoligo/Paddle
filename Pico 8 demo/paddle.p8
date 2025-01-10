@@ -9,7 +9,7 @@ end
 function _update()
 secondnode()
 notedisplayle1()
-
+btnlepressed ()
 
 end
 
@@ -21,7 +21,13 @@ drawnotebarleft()
 drawnotebarright()
 print(fpstosecond ,21,16,8)
 print(seconds, 21, 21,8)
-print(nnc.nncle1,50,50,8)
+print(nnc.nncle4,50,50,9)
+print(levels.level1[nnc.nncle4],50,60,9)
+print(nnv[1], 50, 70, 3)
+print(nnv[2], 50, 78, 3)
+print(countcounter, 50, 86, 8)
+print(lepressed, 50, 94, 8)
+print(lepressedcounter, 50, 102, 8)
 notedisplayle1()
 notedisplayle2()
 notedisplayle3()
@@ -55,6 +61,13 @@ notes={
 --note bar code
 fpstosecond = 0
 seconds = 0
+timescaler = 0
+countcounter = 1
+
+nnv = {
+    le = 0,
+    ri = 0,
+}
 
 notenodele = {
     le1={8,16},
@@ -106,28 +119,67 @@ end
 
 function secondnode()
     fpstosecond +=1
-    if fpstosecond == 30 then
+    if fpstosecond == 30 
+        then
         fpstosecond = 0
         seconds +=1
+        if countcounter >= 4 
+            then
+                countcounter = 1
+            else 
+                countcounter += 1
+        end        
     end
 end
+
+
+--check if there is a note on node
+
+
+
 -->8
 
---interaction code
-btns ={
-    left = btn(M),
-    right = btn(X)
-}
+--interaction cod
+lepressed = false
+lepressedcounter = 0
+lepressedfpstosecond = 0
 
-function btnprsd()
-    
 
+
+--check if button = pressed
+
+function btnlepressed ()
+    if btn(❎) 
+        then
+            lepressed = true
+            btnlepressedcounter()
+        else 
+            lepressed = false
+            lepressedcounter = 0
+    end        
 end
 
+function btnlepressedcounter()
+    lepressedfpstosecond +=1
+    if lepressedfpstosecond == 15
+        then
+            lepressedfpstosecond = 0
+            lepressedcounter +=0.5
+    end
+end
+
+function notecheck()
+    --check which note is in notebar -> check how much seconds that os
+    if nnv.le >= 4 
+        then
+
+
+
+end    
 -->8
 
 --damage code
-
+wrongnotecheck = false
 
 
 -->8
@@ -176,44 +228,56 @@ levels = {
 }
 
 function notedisplayle1()
-    if nnc.nncle1 <=32 then
-        nnc.nncle1 = seconds-4
-        spr(levels.level1[nnc.nncle1],notenodele.le1[1],notenodele.le1[2])
-    elseif nnc.nncle1 >32 then
-        spr(0,notenodele.le1[1],notenodele.le1[2])
-        nnc.nncle1 = 0
+    if nnc.nncle1 <=32 
+        then
+            nnc.nncle1 = seconds-4
+            spr(levels.level1[nnc.nncle1],notenodele.le1[1],notenodele.le1[2])
+
+    elseif nnc.nncle1 >32 
+        then
+            spr(0,notenodele.le1[1],notenodele.le1[2])
+            nnc.nncle1 = 33
     end
 end
 
 function notedisplayle2()
-    if nnc.nncle2 <=33 then
-        nnc.nncle2 = seconds-5
-        spr(levels.level1[nnc.nncle2],notenodele.le2[1],notenodele.le2[2])
-    elseif nnc.nncle2 >34 then
-        spr(0,notenodele.le2[1],notenodele.le2[2])
-        nnc.nncle2 = 0
+    if nnc.nncle2 <=32 
+        then
+            nnc.nncle2 = seconds-5
+            spr(levels.level1[nnc.nncle2],notenodele.le2[1],notenodele.le2[2])
+    elseif nnc.nncle2 >30 
+        then
+            spr(0,notenodele.le2[1],notenodele.le2[2])
+            nnc.nncle2 =33
     end
 end
 
 function notedisplayle3()
-    if nnc.nncle3 <= 33 then
-        nnc.nncle3 = seconds - 6
-        spr(levels.level1[nnc.nncle3], notenodele.le3[1], notenodele.le3[2])
-    elseif nnc.nncle3 > 34 then
-        spr(0, notenodele.le3[1], notenodele.le3[2])
-        nnc.nncle3 = 0
+    if nnc.nncle3 <= 32 
+        then
+            nnc.nncle3 = seconds - 6
+            spr(levels.level1[nnc.nncle3], notenodele.le3[1], notenodele.le3[2])
+    elseif nnc.nncle3 > 32 
+        then
+            spr(0, notenodele.le3[1], notenodele.le3[2])
+            nnc.nncle3 =33
     end
 end
 
 function notedisplayle4()
-    if nnc.nncle4 <= 33 then
-        nnc.nncle4 = seconds - 7
-        spr(levels.level1[nnc.nncle4], notenodele.le4[1], notenodele.le4[2])
-    elseif nnc.nncle4 > 34 then
-        spr(0, notenodele.le4[1], notenodele.le4[2])
-        nnc.nncle4 = 0
+    if nnc.nncle4 <= 32 
+        then
+            nnc.nncle4 = seconds - 7
+            spr(levels.level1[nnc.nncle4], notenodele.le4[1], notenodele.le4[2])
+            nnv[1] = levels.level1[nnc.nncle4]
+    elseif nnc.nncle4 > 32 
+        then
+            spr(0, notenodele.le4[1], notenodele.le4[2])
+            nnc.nncle4 = 33
+            nnv[1] = 0
     end
 end
+
 
 function notedisplayle5()
     if nnc.nncle5 <= 33 then
@@ -221,7 +285,7 @@ function notedisplayle5()
         spr(levels.level1[nnc.nncle5], notenodele.le5[1], notenodele.le5[2])
     elseif nnc.nncle5 > 34 then
         spr(0, notenodele.le5[1], notenodele.le5[2])
-        nnc.nncle5 = 0
+        nnc.nncle5 = 33
     end
 end
 
@@ -231,7 +295,7 @@ function notedisplayle6()
         spr(levels.level1[nnc.nncle6], notenodele.le6[1], notenodele.le6[2])
     elseif nnc.nncle6 > 34 then
         spr(0, notenodele.le6[1], notenodele.le6[2])
-        nnc.nncle6 = 0
+        nnc.nncle6 = 33
     end
 end
 
@@ -241,7 +305,7 @@ function notedisplayle7()
         spr(levels.level1[nnc.nncle7], notenodele.le7[1], notenodele.le7[2])
     elseif nnc.nncle7 > 34 then
         spr(0, notenodele.le7[1], notenodele.le7[2])
-        nnc.nncle7 = 0
+        nnc.nncle7 = 33
     end
 end
 
@@ -251,7 +315,7 @@ function notedisplayle8()
         spr(levels.level1[nnc.nncle8], notenodele.le8[1], notenodele.le8[2])
     elseif nnc.nncle8 > 34 then
         spr(0, notenodele.le8[1], notenodele.le8[2])
-        nnc.nncle8 = 0
+        nnc.nncle8 = 33
     end
 end
 
@@ -261,7 +325,7 @@ function notedisplayri1()
         spr(levels.level1[nnc.nncri1],notenoderi.ri1[1],notenoderi.ri1[2])
     elseif nnc.nncri1 >32 then
         spr(0,notenoderi.ri1[1],notenoderi.ri1[2])
-        nnc.nncri1 = 0
+        nnc.nncri1 = 33
     end
 end
 
@@ -271,7 +335,7 @@ function notedisplayri2()
         spr(levels.level1[nnc.nncri2],notenoderi.ri2[1],notenoderi.ri2[2])
     elseif nnc.nncri2 >32 then
         spr(0,notenoderi.ri2[1],notenoderi.ri2[2])
-        nnc.nncri2 = 0
+        nnc.nncri2 = 33
     end
 end
 
@@ -281,7 +345,7 @@ function notedisplayri3()
         spr(levels.level1[nnc.nncri3],notenoderi.ri3[1],notenoderi.ri3[2])
     elseif nnc.nncri3 >32 then
         spr(0,notenoderi.ri3[1],notenoderi.ri3[2])
-        nnc.nncri3 = 0
+        nnc.nncri3 = 33
     end
 end
 
@@ -289,9 +353,11 @@ function notedisplayri4()
     if nnc.nncri4 <=32 then
         nnc.nncri4 = seconds-7
         spr(levels.level1[nnc.nncri4],notenoderi.ri4[1],notenoderi.ri4[2])
+        nnv[2] = levels.level1[nnc.nncri4]
     elseif nnc.nncri4 >32 then
         spr(0,notenoderi.ri4[1],notenoderi.ri4[2])
-        nnc.nncri4 = 0
+        nnc.nncri4 = 33
+        nnv[2] = 0
     end
 end
 
@@ -301,7 +367,7 @@ function notedisplayri5()
         spr(levels.level1[nnc.nncri5],notenoderi.ri5[1],notenoderi.ri5[2])
     elseif nnc.nncri5 >32 then
         spr(0,notenoderi.ri5[1],notenoderi.ri5[2])
-        nnc.nncri5 = 0
+        nnc.nncri5 = 33
     end
 end
 --[[ 
