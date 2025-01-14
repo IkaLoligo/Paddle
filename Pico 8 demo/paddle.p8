@@ -1,46 +1,53 @@
 pico-8 cartridge // http://www.pico-8.com
 version 42
 __lua__
-function _init()
 
+    --variable check if there is a note on a node
+nnvactive = {
+    nnvleactive = false,
+    nnvriactive = false
+}
+
+lepressedfpstosecond = 0
+
+--variable that stores note value on note node
+notetocounts = {
+    nncvle = 0,
+    nncvri = 0,
+}
+
+--variable that stores the seconds of the counts each player needs to hold the action button in for.
+countstoseconds = {
+    lecounts = 0,
+    ricounts = 0,
+}
+
+nnv = {
+    le = 0,
+    ri = 0,
+}
+
+fpstosecondle = 1
+gamestart = false
+
+function _init()
+gamestart = true
 end
 
 
 function _update()
 secondnode()
 notedisplayle1()
-btnlepressed ()
-
+btnlepressed()
+notecountdownle()
+damagecheck()
 end
 
 
 function _draw()
 cls()
 rectfill( 0, 0, 128, 128, 12)
-drawnotebarleft()
-drawnotebarright()
-print(fpstosecond ,21,16,8)
-print(seconds, 21, 21,8)
-print(nnc.nncle4,50,50,9)
-print(levels.level1[nnc.nncle4],50,60,9)
-print(nnv[1], 50, 70, 3)
-print(nnv[2], 50, 78, 3)
-print(countcounter, 50, 86, 8)
-print(lepressed, 50, 94, 8)
-print(lepressedcounter, 50, 102, 8)
-notedisplayle1()
-notedisplayle2()
-notedisplayle3()
-notedisplayle4()
-notedisplayle5()
-notedisplayle6()
-notedisplayle7()
-notedisplayle8()
-notedisplayri1()
-notedisplayri2()
-notedisplayri3()
-notedisplayri4()
-notedisplayri5()
+gamestate()
 end
 
 
@@ -63,11 +70,10 @@ fpstosecond = 0
 seconds = 0
 timescaler = 0
 countcounter = 1
+lesecondscts = 0
+risecondscts = 0
 
-nnv = {
-    le = 0,
-    ri = 0,
-}
+
 
 notenodele = {
     le1={8,16},
@@ -128,7 +134,9 @@ function secondnode()
                 countcounter = 1
             else 
                 countcounter += 1
-        end        
+        end 
+        nnvletest()
+        nnvritest()       
     end
 end
 
@@ -138,16 +146,7 @@ end
 
 
 -->8
-
---interaction cod
-lepressed = false
 lepressedcounter = 0
-lepressedfpstosecond = 0
-
-
-
---check if button = pressed
-
 function btnlepressed ()
     if btn(❎) 
         then
@@ -164,22 +163,17 @@ function btnlepressedcounter()
     if lepressedfpstosecond == 15
         then
             lepressedfpstosecond = 0
-            lepressedcounter +=0.5
+            lepressedcounter -=0.5
+            checknotepres()
+            damagecounter()
     end
 end
 
-function notecheck()
-    --check which note is in notebar -> check how much seconds that os
-    if nnv.le >= 4 
-        then
-
-
-
-end    
+  
 -->8
 
 --damage code
-wrongnotecheck = false
+
 
 
 -->8
@@ -190,8 +184,124 @@ wrongnotecheck = false
 -->8
 
 --level code
---
+noteworth = {
+    le = 0,
+    ri = 0,
+}
 
+totalnotes = {
+    le = 0,
+    ri = 0
+}
+function nnvletest()
+    if nnv[1] == 4 then
+        noteworth.le = 4
+        lepressedcounter = 4
+        totalnotes.le +=1
+    elseif nnv[1] == 5 then
+        noteworth.le = 2
+        lepressedcounter = 2
+        totalnotes.le +=1
+    elseif nnv[1] == 6 then
+        noteworth.le = 1
+        lepressedcounter = 1
+        totalnotes.le +=1
+    elseif nnv[1] == 7 then
+        noteworth.le = 0.5
+        lepressedcounter = 0.5
+        totalnotes.le +=1
+    end
+end
+function nnvritest()
+    if nnv[2] == 4 then
+        noteworth.ri = 4
+    elseif nnv[2] == 5 then
+        noteworth.ri = 2
+    elseif nnv[2] == 6 then
+        noteworth.ri = 1
+    elseif nnv[2] == 7 then
+        noteworth.ri = 0.5
+    end
+end
+
+function notecountdownle()
+    fpstosecondle +=1
+    if fpstosecondle == 15 then
+        fpstosecondle = 1
+        if noteworth.le >0 then
+            noteworth.le -= 0.5 
+        end
+    end
+end
+legood = false
+legoodcounts = 0
+function checknotepres()
+    if noteworth.le == 1 and lepressedcounter <=1.5 then
+        legood = true
+        legoodcounts +=1
+    else
+        legood = false
+    end
+end
+damage = 0
+
+function damagecounter()
+    damage = totalnotes.le - legoodcounts
+end
+
+function failscreen()
+    rectfill( 20, 20, 108, 108, 9)
+    rect( 20, 20, 108, 108, 4)
+    rect( 21, 21, 107, 107, 4)
+    print("de boot is gezonken", 27, 25, 7)
+    print('aantal noten '..totalnotes.le, 27, 40, 7)
+    print('aantal goed '..legoodcounts, 27, 48, 7)
+    print('opnieuw ❎', 27, 92, 7)
+end
+
+function gamestate()
+    if gamestart == false then
+    failscreen()
+    elseif gamestart == true then
+        drawnotebarleft()
+        drawnotebarright()
+        notedisplayle1()
+        notedisplayle2()
+        notedisplayle3()
+        notedisplayle4()
+        notedisplayle5()
+        notedisplayle6()
+        notedisplayle7()
+        notedisplayle8()
+        notedisplayri1()
+        notedisplayri2()
+        notedisplayri3()
+        notedisplayri4()
+        notedisplayri5()
+        print(fpstosecond ,21,16,8)
+        print(seconds, 21, 21,8)
+        print(nnc.nncle4,50,50,9)
+        print(levels.level1[nnc.nncle4],50,60,9)
+        print(nnv[1], 50, 70, 3)
+        print(nnv[2], 50, 78, 3)
+        print(countcounter, 50, 86, 8)
+        print(noteworth.le, 50, 94, 8)
+        print(noteworth.ri, 50, 100, 8)
+        print(lepressedcounter, 50, 108, 8)
+        print(legood, 50, 116, 8)
+        print(damage, 40, 100, 8)
+        print(totalnotes.le, 40, 108, 8)
+        print(legoodcounts, 40, 116, 8)
+        print(gamestart, 21, 29, 8)
+    elseif gamestart == false then
+        failscreen()
+    end
+end
+
+function damagecheck()
+    if damage == 3 then gamestart = false
+    end
+end
 --nnc == note node counter, counts which note should be displayed on specific note node. has one for each note node
 nnc = {
     nncle1 = 0,
@@ -227,6 +337,7 @@ levels = {
     }
 }
 
+--displays correct note on note node
 function notedisplayle1()
     if nnc.nncle1 <=32 
         then
@@ -269,6 +380,7 @@ function notedisplayle4()
         then
             nnc.nncle4 = seconds - 7
             spr(levels.level1[nnc.nncle4], notenodele.le4[1], notenodele.le4[2])
+            --stores note that is on note node le 4 in nnv (note node value) left
             nnv[1] = levels.level1[nnc.nncle4]
     elseif nnc.nncle4 > 32 
         then
@@ -312,6 +424,7 @@ end
 function notedisplayle8()
     if nnc.nncle8 <= 33 then
         nnc.nncle8 = seconds - 11
+        --stores note that is on note node ri 4 in nnv (note node value) right
         spr(levels.level1[nnc.nncle8], notenodele.le8[1], notenodele.le8[2])
     elseif nnc.nncle8 > 34 then
         spr(0, notenodele.le8[1], notenodele.le8[2])
