@@ -12,47 +12,67 @@
 <body>
     <main>
         <img id="paddle" src="src/img/paddle.svg" alt="paddle logo">
-        <p>           
-            Paddle is een ritme game waar het kind oefent met noten herkennen, de waardes van noten en hoe de BPM muziek beïnvloed.
-        </p>
-        <img id="nootjes" src="src/img/nootjes.svg" alt="">
-        <h2>
-            Demo video
-        </h2>
-        <iframe class="oneVisual" width="512" height="512" src="src/video/paddleDemo.mp4"></iframe> </iframe>
-        <h2>
-            Wat komt er aan bod?
-        </h2>
         <div class="visualPlusText">
-            <img id="muziekNoten" src="src/img/noten.svg" alt="">
-            <div>
-                <h3>Notenwaardes</h3>
+            <p>           
+                Sommige boten varen per zeil, andere per motor. Maar in paddle moet je peddelen om vooruit te komen!
+            </p>            
+        </div>
+        <div class="headerBubble">
+            <h3>intro video</h3>
+            <iframe class="video" width="350" height="350" src="src/video/paddleDemo.mp4"></iframe> </iframe>
+        </div>
+
+        <div class="headerBubble">
+            <h3>Roeien met de riemen</h3>
+            <div class="visualPlusTextNoBackground">
                 <p>
-                    De notenwaardes worden aangeleerd doormiddel van de momenten dat ze moeten roeien. De tekens van de te spelen noten worden weergeven naast de roeimomenten. Een hele noot zullen ze langer moeten inhouden (en dus spelen) dan een kwartnoot. Hierdoor leren de kinderen wat de noten tekens betekenen en wat de waarde van ze is binnen een ritme.
+                    Tijdens het roeien is het belangrijk dat jij en je roeimaatje op de maat roeien. Doe je dat niet, dan raakt de boot van koers. En waar de koers kwijt is schuilen er gevaren op de weg
+                     Gelukkig leert Paddle jullie hoe jullie op de maat kunnen roeien!
                 </p>
+                <img src="src/img/nootjes.svg" alt="">
+            </div>
+        </div>
+
+        <div class="headerBubble">
+            <h3>Het doel?</h3>
+            <div class="visualPlusTextNoBackground">
+                <img id="notebar" src="src/img/noteBarOnTime.svg" alt="">
+                <p>
+                    Het doel van paddle is het bereiken van de andere oever. Dat doe je door op de maat te roeien. <br>
+                    links en rechts zie je twee noten balken. Links voor speler 1, rechts voor speler 2. <br><br>
+                    Is de noot in het gekleurde vakje? Dan moet je deze zo snel als mogelijk spelen! Doe je dat niet, dan ben je te laat. De noot gaat ongespeeld verder
+                </p>
+                <img id="notebar" src="src/img/noteBarTooLate.svg" alt="">
+            </div>
+        </div>
+
+        <div class="headerBubble">
+            <h3>Noot gemist?</h3>
+            <div class="visualPlusTextNoBackground">
+                <img src="src/img/boat.svg" alt="">
+                <p>mis je de noot? Dan raakt de boot schade op. Een scheurtje kan geen kwaad, maar bij drie verkeerde noten zal het schip gaan zinken.
+                    In het begin ziet je boot zoals rechts uit. Maar pas op! Sla de toon een paar keer mis dan is het wrak hiernaast jouw schip! 
+                    Zorg dus goed voor je boot en roei op de maat.
+                </p>
+                <img src="src/img/boat damaged.svg" alt="">
+            </div>
+        </div>
+
+        <div class="headerBubble">
+            <h3>Zelf roeien?</h3>
+            <div class="visualPlusTextNoBackgroundColumn">
+                <p>
+                    Heb je zin om te roeien? Dan druk op de onderstaande knop om te beginnen. Je komt op de pagina terecht waar jouw schip voor jou klaar staat.
+                </p>
+                <button onclick="document.location='https://ikaloligo.itch.io/paddle'">Speel het spel!</button>
+                <p>
+                    Wil je toch het fijnere weten van de spelregels? Druk dan op deze knop:
+                </p>
+                <button onclick="document.location='src/documents/paddleManualNL.pdf'">De spelregels</button>
             </div>
 
         </div>
-        
-        <div class="visualPlusText">
-            <div>
-                <h3>Ritmes</h3>
-                <p>
-                    De kinderen leren ritmes te spelen. De notenbalk geeft bij elke beweging een ritme gebasseerd op de maatsoort van het level dat is gekozen. De ritmes kunnen simpele ritmes zijn, of juist vrij complexere ritmes. Dat ligt ook aan de moeilijkheidsgraad die is gekozen.
-                </p>
-            </div>
-            <img id="notebar" src="src/img/notebar.svg" alt="">   
-        </div>
 
-        <div class="visualPlusText">
-            <img id="windsok" src="src/img/windsok.svg" alt="">
-            <div>
-                <h3>BPM</h3>
-                <p>
-                    BPM in een level door dit te tonen bij de level selector. De BPM wordt in het spel vertaald naar de stroomsnelheid van de zee. Hoe sneller de BPM, en dus de stroomsnelheid, hoe sneller de noten worden gespeeld.
-                </p>
-            </div>
-        </div>
     </main>
     <footer>
         
