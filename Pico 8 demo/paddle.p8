@@ -8,13 +8,12 @@ function _init()
         level1 = {
             5,0,5,0,
             5,0,5,0,
-            5,0,5,0,
-            5,0,5,0,
             4,0,0,0,
             4,0,0,0,
             5,0,5,0,
             5,0,5,0,
-            5,0,5,0,
+            4,0,0,0,
+            4,0,0,0,
         }
     }
     nnvactive = {
@@ -58,7 +57,6 @@ function _init()
         le = 0,
         ri = 0
     }
-    legood = false
     legoodcounts = 0
 
     damage = 0
@@ -125,6 +123,11 @@ function _draw()
 cls()
 rectfill( 0, 0, 128, 128, 12)
 gamestatedraw()
+print(lepressedcounter,0,0,8)
+print(noteworth.le, 8, 0,8)
+print(damage, 0, 8, 8)
+print(legoodcounts, 8, 8, 8)
+print(totalnotes.le, 12,8,8)
 end
 
 
@@ -210,7 +213,7 @@ function btnlepressedcounter()
     if lepressedfpstosecond == 15
         then
             lepressedfpstosecond = 0
-            lepressedcounter -=0.5
+            lepressedcounter +=0.5
             checknotepres()
             sfx(1)
     end
@@ -230,9 +233,9 @@ function gamestateupdate()
         secondnode()
         notedisplayle1()
         btnlepressedgamerun()
-        notecountdownle()
         nnvleupdater ()
         nnvriupdater ()
+        totalnotescorrection()
         damagecounter()
         damagecheck()
         wincheck()
@@ -268,22 +271,18 @@ end
 function nnvletest()
     if nnv[1] == 4 then
         noteworth.le = 4
-        lepressedcounter = 4
         totalnotes.le +=1
         totalcounts.le +=1
     elseif nnv[1] == 5 then
         noteworth.le = 2
-        lepressedcounter = 2
         totalnotes.le +=1
         totalcounts.le +=1
     elseif nnv[1] == 6 then
         noteworth.le = 1
-        lepressedcounter = 1
         totalnotes.le +=1
         totalcounts.le +=1
     elseif nnv[1] == 7 then
         noteworth.le = 0.5
-        lepressedcounter = 0.5
         totalnotes.le +=1
         totalcounts.le +=1
     elseif nnv[1] == 0 then
@@ -313,25 +312,18 @@ function nnvritest()
     end
 end
 
-function notecountdownle()
-    fpstosecondle +=1
-    if fpstosecondle == 15 then
-        fpstosecondle = 1
-        if noteworth.le >0 then
-            noteworth.le -= 0.5 
-        end
-    end
-end
-
 function checknotepres()
-    if noteworth.le == 1 and lepressedcounter <=1.5 then
-        legood = true
+    if lepressedcounter == noteworth.le or lepressedcounter == noteworth.le -0.5 then
         legoodcounts +=1
-    else
-        legood = false
     end
+
 end
 
+function totalnotescorrection()
+    if legoodcounts >= totalnotes.le then
+        legoodcounts = totalnotes.le
+    end
+end
 
 function damagecounter()
     damage = totalnotes.le - legoodcounts
